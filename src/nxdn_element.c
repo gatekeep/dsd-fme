@@ -51,7 +51,7 @@ void NXDN_SACCH_Full_decode(dsd_opts * opts, dsd_state * state)
     for (i = 0; i < 9; i++)
     {
       sacch_bytes[i] = (uint8_t)ConvertBitIntoBytes(&SACCH[i*8], 8);
-      fprintf (stderr, "[%02X]", sacch_bytes[i]);
+      fprintf (stderr, "%02X", sacch_bytes[i]);
     }
   }
 

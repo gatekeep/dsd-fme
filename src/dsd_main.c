@@ -1371,9 +1371,6 @@ main (int argc, char **argv)
   #else
   fprintf (stderr,"            Digital Speech Decoder: Florida Man Edition\n");
   #endif
-  for (short int i = 1; i < 7; i++) {
-    fprintf (stderr,"%s\n", FM_banner[i]);
-  }
 
   #ifdef AERO_BUILD
   fprintf (stderr, "Build Version: v2.1 \n");

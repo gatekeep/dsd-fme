@@ -130,7 +130,7 @@ void nxdn_deperm_facch(dsd_opts * opts, dsd_state * state, uint8_t bits[144])
 		fprintf (stderr, " FACCH1 Payload ");
 		for (int i = 0; i < 12; i++)
 		{
-			fprintf (stderr, "[%02X]", m_data[i]); 
+			fprintf (stderr, "%02X", m_data[i]); 
 		}
 		if (crc != check && opts->payload == 1)
 		{
@@ -262,7 +262,7 @@ void nxdn_deperm_sacch(dsd_opts * opts, dsd_state * state, uint8_t bits[60])
 			fprintf (stderr, "\n SACCH NSF ");
 			for (int i = 0; i < 4; i++)
 			{
-				fprintf (stderr, "[%02X]", m_data[i]);
+				fprintf (stderr, "%02X", m_data[i]);
 			}
 
 			if (crc != check)
@@ -468,7 +468,7 @@ void nxdn_deperm_facch2_udch(dsd_opts * opts, dsd_state * state, uint8_t bits[34
 		for (int i = 0; i < 26; i++)
 		{
 			if (i == 13) fprintf (stderr, "\n  ");
-			fprintf (stderr, "[%02X]", m_data[i]); 
+			fprintf (stderr, "%02X", m_data[i]); 
 		}
 		
 		if (crc != check)
@@ -605,7 +605,7 @@ void nxdn_deperm_cac(dsd_opts * opts, dsd_state * state, uint8_t bits[300])
 		fprintf (stderr, " CAC Payload\n  ");
 		for (int i = 0; i < 22; i++)
 		{
-			fprintf (stderr, "[%02X]", m_data[i]); 
+			fprintf (stderr, "%02X", m_data[i]); 
 			if (i == 10) fprintf (stderr, "\n  ");
 		}
 		// if (crc != 0) fprintf (stderr, " CRC ERR ");
@@ -743,7 +743,7 @@ void nxdn_deperm_scch(dsd_opts * opts, dsd_state * state, uint8_t bits[60], uint
 		fprintf (stderr, "\n SCCH Payload ");
 		for (int i = 0; i < 4; i++)
 		{
-			fprintf (stderr, "[%02X]", m_data[i]);
+			fprintf (stderr, "%02X", m_data[i]);
 		}
 
 		if (crc != check)
@@ -867,7 +867,7 @@ void nxdn_deperm_facch3_udch2(dsd_opts * opts, dsd_state * state, uint8_t bits[2
 		for (int i = 0; i < 24; i++)
 		{
 			if (i == 12) fprintf (stderr, "\n  ");
-			fprintf (stderr, "[%02X]", f3_udch2_bytes[i]); 
+			fprintf (stderr, "%02X", f3_udch2_bytes[i]); 
 		}
 
 		if ( (crc[0] != check[0] || crc[1] != check[1]) && opts->payload == 1)

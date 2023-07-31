@@ -501,7 +501,7 @@ void processMPDU(dsd_opts * opts, dsd_state * state)
     fprintf (stderr, "\n P25 MBF Payload \n  ");
     for (i = 0; i < 36; i++)
     {
-      fprintf (stderr, "[%02X]", mpdu_byte[i]);
+      fprintf (stderr, "%02X", mpdu_byte[i]);
       if (i == 11 || i == 23) fprintf (stderr, "\n  ");
 
     }

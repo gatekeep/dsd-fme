@@ -356,6 +356,13 @@ void p25_lcw (dsd_opts * opts, dsd_state * state, uint8_t LCW_bits[], uint8_t ir
     else fprintf (stderr, " Unknown Format %02X MFID %02X ", lc_format, lc_mfid);
   }
 
+  if (opts->payload == 1)
+  {
+    fprintf (stderr, "%s",KMAG);
+    fprintf (stderr, "\n LCO %02X MFID %02X Protected: %d Explicit: %d", lc_format, lc_mfid, lc_pf, lc_sf);
+    fprintf (stderr, "%s ", KNRM);
+  }
+
   //ending line break
   fprintf (stderr, "\n");
 

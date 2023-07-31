@@ -1088,7 +1088,7 @@ void dmr_cspdu (dsd_opts * opts, dsd_state * state, uint8_t cs_pdu_bits[], uint8
             for (i = 0; i < (10+(block_num*7)); i++) 
             {
               fl_bytes = (uint8_t)ConvertBitIntoBytes(&state->cap_plus_csbk_bits[ts][i*8], 8);
-              fprintf (stderr, "[%02X]", fl_bytes);
+              fprintf (stderr, "%02X", fl_bytes);
               if (i == 17 || i == 35) fprintf (stderr, "\n  ");
             }
             fprintf (stderr, "%s", KNRM);

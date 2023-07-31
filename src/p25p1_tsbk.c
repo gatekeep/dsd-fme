@@ -133,6 +133,15 @@ void processTSBK(dsd_opts * opts, dsd_state * state)
     //check the protect bit, don't run if protected
     protectbit = (tsbk_byte[0] >> 6) & 0x1;
 
+    if (opts->payload == 1)
+    {
+      fprintf (stderr, "\n%s TSBK%d %sPayload ", KNRM, j+1, KCYN);
+      for (i = 0; i < 12; i++)
+      {
+        fprintf (stderr, "%02X", tsbk_byte[i]);
+      }
+    }
+
     //Don't run NET_STS out of this, or will set wrong NAC/CC //&& PDU[1] != 0x49 && PDU[1] != 0x45
     //0x49 is telephone grant, 0x46 Unit to Unit Channel Answer Request (seems bogus) (mfid 90)
     // if (MFID < 0x2 && protectbit == 0 && err == 0 && ec == 0 && PDU[1] != 0x7B )
@@ -170,46 +179,37 @@ void processTSBK(dsd_opts * opts, dsd_state * state)
         state->p2_wacn = wacn;
         state->p2_sysid = sysid;
       }  
-        
+
       if (opts->payload == 1)
       {
-        fprintf (stderr, "%s",KCYN);
-        fprintf (stderr, "\n P25 PDU Payload #%d ", j);
-        for (i = 0; i < 12; i++)
-        {
-          fprintf (stderr, "[%02X]", tsbk_byte[i]);
-        }
+          fprintf (stderr, "%s", KCYN);
+          fprintf (stderr, "\n P25 MAC PDU Payload\n  ");
+          for (int i = 0; i < 12; i++)
+          {
+              fprintf (stderr, "%02llX", tsbk_byte[i]);
+              if (i == 11) fprintf (stderr, "\n  ");
+          }
+          fprintf (stderr, "%s", KNRM);
       }
-
-      fprintf (stderr, "%s ", KNRM);
-
     }
 
-    else
+    if (opts->payload == 1)
     {
-      if (opts->payload == 1)
-      {
-        fprintf (stderr, "%s",KCYN);
-        fprintf (stderr, "\n P25 PDU Payload #%d ", j+1);
-        for (i = 0; i < 12; i++)
-        {
-          fprintf (stderr, "[%02X]", tsbk_byte[i]);
-        }
-        fprintf (stderr, "\n MFID %02X Protected: %d Last Block: %d", MFID, protectbit, (tsbk_byte[0] >> 7) );
+      fprintf (stderr, "%s",KMAG);
+      fprintf (stderr, "\n LCO %02X MFID %02X Protected: %d Last Block: %d", PDU[1] ^ 0x40, MFID, protectbit, (tsbk_byte[0] >> 7) );
         
-        if (ec != 0) 
-        {
-          fprintf (stderr, "%s",KRED);
-          fprintf (stderr, " (FEC ERR)");
-        }
-        else if (err != 0) 
-        {
-          fprintf (stderr, "%s",KRED);
-          fprintf (stderr, " (CRC ERR)");
-        }
-        fprintf (stderr, "%s ", KNRM);
+      if (ec != 0) 
+      {
+        fprintf (stderr, "%s",KRED);
+        fprintf (stderr, " (FEC ERR)");
       }
-    } 
+      else if (err != 0) 
+      {
+        fprintf (stderr, "%s",KRED);
+        fprintf (stderr, " (CRC ERR)");
+      }
+      fprintf (stderr, "%s ", KNRM);
+    }
 
     //reset for next rep
     ec = -2;

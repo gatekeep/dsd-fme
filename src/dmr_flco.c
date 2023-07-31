@@ -940,7 +940,7 @@ void dmr_slco (dsd_opts * opts, dsd_state * state, uint8_t slco_bits[])
     fprintf (stderr, "\n SLCO Completed Block ");
     for (i = 0; i < 5; i++)
     {
-      fprintf (stderr, "[%02X]", slco_bytes[i]);
+      fprintf (stderr, "%02X", slco_bytes[i]);
     }
     fprintf (stderr, "\n"); //if its a voice frame, we need the line break 
   }

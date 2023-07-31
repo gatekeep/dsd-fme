@@ -414,7 +414,20 @@ processTDULC (dsd_opts* opts, dsd_state* state)
     LCW_bits[j + 6] = (LCW_bytes[i] >> 1) & 0x01;
     LCW_bits[j + 7] = (LCW_bytes[i] >> 0) & 0x01;
   }
- 
+
+  if (opts->payload == 1)
+  {
+    fprintf (stderr, "%s",KCYN);
+    fprintf (stderr, "%s LCO %sPayload ", KNRM, KCYN);
+    for (i = 0; i < 9; i++)
+    {
+      fprintf (stderr, "%02X", LCW_bytes[i]);
+    }
+    
+    
+    fprintf (stderr, "%s\n", KNRM);
+  }
+
   //send to new P25 LCW function
   if (irrecoverable_errors == 0)
   {
@@ -426,19 +439,6 @@ processTDULC (dsd_opts* opts, dsd_state* state)
   {
     fprintf (stderr, "%s",KRED);
     fprintf (stderr, " LCW FEC ERR ");
-    fprintf (stderr, "%s\n", KNRM);
-  }
-
-  if (opts->payload == 1)
-  {
-    fprintf (stderr, "%s",KCYN);
-    fprintf (stderr, " P25 LCW Payload ");
-    for (i = 0; i < 9; i++)
-    {
-      fprintf (stderr, "[%02X]", LCW_bytes[i]);
-    }
-    
-    
     fprintf (stderr, "%s\n", KNRM);
   }
 

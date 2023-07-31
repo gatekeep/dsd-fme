@@ -637,7 +637,7 @@ void dmr_data_burst_handler(dsd_opts * opts, dsd_state * state, uint8_t info[196
     fprintf (stderr, " DMR PDU Payload ");
     for (i = 0; i < pdu_len; i++)
     {
-      fprintf (stderr, "[%02X]", DMR_PDU[i]);
+      fprintf (stderr, "%02X", DMR_PDU[i]);
     }
 
     //debug print

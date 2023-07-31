@@ -544,7 +544,7 @@ void dmr_block_assembler (dsd_opts * opts, dsd_state * state, uint8_t block_byte
         fprintf (stderr, "\n Slot %d - Multi Block PDU Message\n  ", slot+1);
         for (i = 0; i < ((blocks+1)*block_len); i++) 
         {
-          fprintf (stderr, "[%02X]", state->dmr_pdu_sf[slot][i]);
+          fprintf (stderr, "%02X", state->dmr_pdu_sf[slot][i]);
           if (i == 11 || i == 23 || i == 35 || i == 47 || i == 59 || i == 71 || i == 83 || i == 95) 
           {
             fprintf (stderr, "\n  "); 
@@ -688,7 +688,7 @@ void dmr_block_assembler (dsd_opts * opts, dsd_state * state, uint8_t block_byte
         fprintf (stderr, "\n Slot %d - Multi Block Control Message\n  ", slot+1);
         for (i = 0; i < ((blocks+1)*block_len); i++) 
         {
-          fprintf (stderr, "[%02X]", state->dmr_pdu_sf[slot][i]);
+          fprintf (stderr, "%02X", state->dmr_pdu_sf[slot][i]);
           if (i == 11 || i == 23 || i == 35 || i == 47 || i == 59 || i == 71 || i == 83 || i == 95) 
           {
             fprintf (stderr, "\n  "); 

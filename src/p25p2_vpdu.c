@@ -1620,10 +1620,10 @@ void process_MAC_VPDU(dsd_opts * opts, dsd_state * state, int type, unsigned lon
 	if (opts->payload == 1 && MAC[1] != 0) //print only if not a null type //&& MAC[1] != 0 //&& MAC[2] != 0
 	{
 		fprintf (stderr, "%s", KCYN);
-		fprintf (stderr, "\n P25 PDU Payload\n  ");
+		fprintf (stderr, "\n P25 MAC PDU Payload\n  ");
 		for (int i = 0; i < 24; i++)
 		{
-			fprintf (stderr, "[%02llX]", MAC[i]);
+			fprintf (stderr, "%02llX", MAC[i]);
 			if (i == 11) fprintf (stderr, "\n  ");
 		}
 		fprintf (stderr, "%s", KNRM);
