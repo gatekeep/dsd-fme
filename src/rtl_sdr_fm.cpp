@@ -1110,8 +1110,12 @@ void rtl_dev_tune(dsd_opts * opts, long int frequency)
 //return RMS value (root means square) power level -- used as soft squelch inside of framesync
 int rtl_return_rms()
 {
-	int sr = 0;
+	long int sr = 0;
+	#ifdef __arm__
+	sr = 100;
+	#else
 	sr = rms(demod.lowpassed, demod.lp_len, 1);
+	#endif
 	// 'Fix' potential negative value overflow from the rms function -- Observed in Windows builds
 	sr = abs(sr);
 	if (sr > 9999) sr = 9999;
